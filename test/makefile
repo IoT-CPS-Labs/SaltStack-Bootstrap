@@ -19,4 +19,4 @@ bashNewNode:
 
 unitTest:
 	@docker run $(dockerTTYArgs) $(addTests) $(addTools) saltstack-bootstrap-new-node /bin/bash -c \
-	"bash test/unit/*"
+	"bash test/run-all-unit.sh"
