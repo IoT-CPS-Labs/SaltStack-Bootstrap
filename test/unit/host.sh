@@ -8,7 +8,7 @@ oneTimeSetUp() {
   assertTrue "[ $? = 0 ]"
 }
 
-test_add_host() {
+test_add_host_success() {
   domain="master.saltstack.com"
   ip="10.1.1.1"
 
@@ -26,6 +26,18 @@ test_add_host() {
   condition=$(grep "." /etc/hosts | tail -n1)
   echo $condition | grep "$ip" | grep -q "$domain"
   assertTrue "[ $? = 0 ]"
+}
+
+test_add_host_no_arguments() {
+  condition=$(addHost)
+  assertTrue "[ $? = 1 ]"
+}
+
+test_add_host_one_argument() {
+  domain="master.saltstack.com"
+
+  condition=$(addHost "$domain")
+  assertTrue "[ $? = 1 ]"
 }
 
 . /shunit2/shunit2
