@@ -53,17 +53,25 @@ while getopts "mn:i:r:dt" args; do
   esac
 done
 
+if [ -n "$testmode" ]; then
+  eval "$(curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/tools/mock-tools.sh)"
+else
+  eval "$(curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/tools/configure-host.sh)"
+  eval "$(curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/tools/install-custom-saltstack-repository.sh)"
+  eval "$(curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/tools/install-saltstack.sh)"
+fi
+
 if [ -n "$isMaster" ] && [ -n "$node" ]; then
-  echo "Bootstrap Master"
+  bootstrap_master
   if [ -n "$generateKey" ] && [ -n "$repository" ]; then
-    echo "Create Deploy Key"
+    createDeployKey
   fi
   if [ -n "$repository" ]; then
-    echo "Clone Repository"
-    echo "Configure SaltMaster Roots"
+    cloneRepository
+    configureSaltMasterRoots
   fi
 elif [ -n "$node" ] && [ -n "$ip" ]; then
-  echo "Bootstrap Minion"
+  bootstrap_minion
 else
   usage
   exit 1
