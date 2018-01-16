@@ -8,6 +8,10 @@ createDeployKey() {
   echo "Create Deploy Key"
 }
 
+waitForUserToCopyDeployKey() {
+  echo "Wait For User To Copy Deploy Key"
+}
+
 cloneRepository() {
   echo "Clone Repository"
 }

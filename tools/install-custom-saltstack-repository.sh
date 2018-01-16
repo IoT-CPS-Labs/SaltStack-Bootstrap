@@ -5,6 +5,14 @@ createDeployKey() {
   echo -e "\nHost github.com\n IdentityFile ~/.ssh/saltkey" >> $HOME/.ssh/config
 }
 
+waitForUserToCopyDeployKey() {
+  echo
+  echo -e "Generated Deployment key:\n"
+  cat ~/.ssh/saltkey
+  echo
+  read -p "Please copy the deployment key and add it to the private repository. Once they key has been added, press any key to continue."
+}
+
 cloneRepository() {
   gitUrl=$1
 
