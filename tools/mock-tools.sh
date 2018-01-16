@@ -1,7 +1,7 @@
 #!/bin/bash
 
 addHost () {
-  echo "Add Host"
+  echo "Add Host $1 $2"
 }
 
 createDeployKey() {
@@ -13,11 +13,11 @@ waitForUserToCopyDeployKey() {
 }
 
 cloneRepository() {
-  echo "Clone Repository"
+  echo "Clone Repository $1"
 }
 
 configureSaltMasterRoots() {
-  echo "Configure SaltMaster Roots"
+  echo "Configure SaltMaster Roots $1"
 }
 
 bootstrap_master() {

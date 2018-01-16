@@ -53,6 +53,8 @@ while getopts "mn:i:r:dt" args; do
   esac
 done
 
+domain="master.saltstack.com"
+
 if [ -n "$testmode" ]; then
   eval "$(curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/tools/mock-tools.sh)"
 else
@@ -67,11 +69,12 @@ if [ -n "$isMaster" ] && [ -n "$node" ]; then
     waitForUserToCopyDeployKey
   fi
   if [ -n "$repository" ]; then
-    cloneRepository
-    configureSaltMasterRoots
+    cloneRepository $repository
+    configureSaltMasterRoots $repository
   fi
   bootstrap_master
 elif [ -n "$node" ] && [ -n "$ip" ]; then
+  addHost $domain $ip
   bootstrap_minion
 else
   usage
