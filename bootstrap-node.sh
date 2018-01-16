@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 usage() {
   echo -n "-------- Bootstrap Master --------
@@ -62,14 +62,15 @@ else
 fi
 
 if [ -n "$isMaster" ] && [ -n "$node" ]; then
-  bootstrap_master
   if [ -n "$generateKey" ] && [ -n "$repository" ]; then
     createDeployKey
+    waitForUserToCopyDeployKey
   fi
   if [ -n "$repository" ]; then
     cloneRepository
     configureSaltMasterRoots
   fi
+  bootstrap_master
 elif [ -n "$node" ] && [ -n "$ip" ]; then
   bootstrap_minion
 else
