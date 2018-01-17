@@ -12,3 +12,12 @@ addHost () {
     echo "$ip $domain" >> /etc/hosts
   fi
 }
+
+configureMasterHost() {
+  echo -e "master: master.saltstack.com" >> /etc/salt/minion
+}
+
+configureMinionId() {
+  minion_id=$1
+  echo -e "$minion_id" >> /etc/salt/minion_id
+}

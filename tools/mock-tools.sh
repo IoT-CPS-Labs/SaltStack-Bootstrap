@@ -20,6 +20,14 @@ configureSaltMasterRoots() {
   echo "Configure SaltMaster Roots $1"
 }
 
+configureMasterHost() {
+  echo "Configure Master Host"
+}
+
+configureMinionId() {
+  echo "Configure Minion Id $1"
+}
+
 bootstrap_master() {
   echo "Bootstrap Master"
 }

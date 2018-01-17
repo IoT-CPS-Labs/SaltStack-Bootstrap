@@ -72,9 +72,14 @@ if [ -n "$isMaster" ] && [ -n "$node" ]; then
     cloneRepository $repository
     configureSaltMasterRoots $repository
   fi
+  addHost $domain "127.0.0.1"
+  configureMasterHost
+  configureMinionId $node
   bootstrap_master
 elif [ -n "$node" ] && [ -n "$ip" ]; then
   addHost $domain $ip
+  configureMasterHost
+  configureMinionId $node
   bootstrap_minion
 else
   usage
