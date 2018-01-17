@@ -8,7 +8,7 @@ createDeployKey() {
 waitForUserToCopyDeployKey() {
   echo
   echo -e "Generated Deployment key:\n"
-  cat ~/.ssh/saltkey
+  cat ~/.ssh/saltkey.pub
   echo
   read -p "Please copy the deployment key and add it to the private repository. Once they key has been added, press any key to continue."
 }
