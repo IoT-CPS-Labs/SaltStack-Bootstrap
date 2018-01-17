@@ -1,0 +1,12 @@
+FROM saltstack-bootstrap-new-node
+USER root
+
+RUN apt-get install -y iputils-ping
+
+RUN curl https://raw.githubusercontent.com/alanrossx2/SaltStack-Bootstrap/master/bootstrap-node.sh | bash -s -- -m -n salt_master -r https://github.com/alanrossx2/SaltStack-Bootstrap.git
+
+# On Travis CI, sometimes a broken pipe is created and cannot be used on startup.
+# Therefore delete it and SaltStack can create another one when it is needed.
+RUN rm -rf /var/run/salt/master/*
+
+Expose 4605 4606
