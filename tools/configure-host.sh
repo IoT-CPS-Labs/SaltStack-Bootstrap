@@ -14,10 +14,12 @@ addHost () {
 }
 
 configureMasterHost() {
+  mkdir -p /etc/salt
   echo -e "master: master.saltstack.com" >> /etc/salt/minion
 }
 
 configureMinionId() {
+  mkdir -p /etc/salt
   minion_id=$1
   echo -e "$minion_id" >> /etc/salt/minion_id
 }
